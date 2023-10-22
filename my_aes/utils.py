@@ -22,7 +22,6 @@ def int_xor(array_1, array_2):
 
 
 def pkcs7_padding(text, block_size=16):
-    # padding = x01 -> x10 (1 -> 16)
     padding = block_size - len(text) % block_size
 
     padding_char = ""
@@ -33,7 +32,7 @@ def pkcs7_padding(text, block_size=16):
     return padded_text
 
 
-def pkcs7_unpadding(text, block_size=16):
+def pkcs7_unpadding(text):
     padding = ord(text[-1])
     return text[:-padding]
 
