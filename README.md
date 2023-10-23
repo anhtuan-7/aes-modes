@@ -38,7 +38,7 @@ và `decrypt_cbc_mode()` để giải mã
   - iv (Bytes)
   - ciphertext (Bytes)
 
-### Hàm `encrypt_cbc_mode()`
+### Hàm `decrypt_cbc_mode()`
 - Tham số đầu vào: 
   - ciphertext (Bytes): thông điệp cần giải mã
   - key (Bytes): khóa 
