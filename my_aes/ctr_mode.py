@@ -24,7 +24,7 @@ def encrypt_ctr_mode(plaintext, key, iv=None):
     for c in ciphertext:
         ciphertext_string += "".join([chr(k) for k in c])
 
-    return iv, ciphertext_string
+    return iv, bytes(ciphertext_string, encoding="latin-1")
 
 
 def decrypt_ctr_mode(ciphertext, iv, key):
@@ -34,13 +34,9 @@ def decrypt_ctr_mode(ciphertext, iv, key):
     iv_bytes = iv
     iv_int = int.from_bytes(iv, "big")
 
-    ciphertext_int = []
-    for c in ciphertext:
-        ciphertext_int.append(ord(c))
-
     for i in range(0, math.ceil(len(ciphertext)/16)):
         f = aes.encrypt(iv_bytes)
-        plaintext += "".join([chr(c) for c in int_xor(ciphertext_int[i*16:i*16+16], f)])
+        plaintext += "".join([chr(c) for c in int_xor(ciphertext[i*16:i*16+16], f)])
         iv_int += 1
         iv_bytes = iv_int.to_bytes(16, "big")
 
@@ -50,7 +46,7 @@ def decrypt_ctr_mode(ciphertext, iv, key):
 if __name__ == "__main__":
     my_key = os.urandom(16)
     i1, c1 = encrypt_ctr_mode(txt, my_key)
-    # print(i1)
+    print(i1)
     print(c1)
     print(decrypt_ctr_mode(c1, i1, my_key))
 

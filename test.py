@@ -29,7 +29,7 @@ for p in plaintexts:
     correct_aes_ciphertext = encryptor.update(padded_data) + encryptor.finalize()
     _, my_ciphertext = aes.encrypt(p, key, iv, mode='CBC')
 
-    if bytes(my_ciphertext, encoding="latin-1") != correct_aes_ciphertext:
+    if my_ciphertext != correct_aes_ciphertext:
         test = False
 
 
@@ -40,7 +40,7 @@ for p in plaintexts:
     encryptor = cipher_cbc.encryptor()
     correct_aes_ciphertext = encryptor.update(padded_data) + encryptor.finalize()
 
-    my_plaintext = aes.decrypt(correct_aes_ciphertext.decode('latin-1'), iv, key)
+    my_plaintext = aes.decrypt(correct_aes_ciphertext, iv, key)
     if my_plaintext != p:
         test = False
 
@@ -50,7 +50,7 @@ for p in plaintexts:
     correct_aes_ciphertext = encryptor.update(bytes(p, 'latin-1')) + encryptor.finalize()
 
     _, my_ciphertext = aes.encrypt(p, key, iv, mode='CTR')
-    if bytes(my_ciphertext, encoding="latin-1") != correct_aes_ciphertext:
+    if my_ciphertext != correct_aes_ciphertext:
         test = False
 
 # CTR Decrypt
@@ -58,7 +58,7 @@ for p in plaintexts:
     encryptor = cipher_ctr.encryptor()
     correct_aes_ciphertext = encryptor.update(bytes(p, 'latin-1')) + encryptor.finalize()
 
-    my_plaintext = aes.decrypt(correct_aes_ciphertext.decode('latin-1'), iv, key, mode='CTR')
+    my_plaintext = aes.decrypt(correct_aes_ciphertext, iv, key, mode='CTR')
     if my_plaintext != p:
         test = False
 

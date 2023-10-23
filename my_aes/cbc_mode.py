@@ -27,27 +27,23 @@ def encrypt_cbc_mode(plaintext, key, iv=None):
     for c in ciphertext:
         ciphertext_string += "".join([chr(k) for k in c])
 
-    return iv, ciphertext_string
+    return iv, bytes(ciphertext_string, encoding="latin-1")
 
 
 def decrypt_cbc_mode(ciphertext, iv, key):
     aes = pyaes.AES(key)
     plaintext = ""
 
-    ciphertext_int = []
-    for c in ciphertext:
-        ciphertext_int.append(ord(c))
-
     # Block[0]
-    block = ciphertext_int[0:16]
+    block = ciphertext[0:16]
     decrypted = int_xor(aes.decrypt(block), iv)
     decrypted_text = [chr(c) for c in decrypted]
     plaintext += "".join(decrypted_text)
 
     # Other Blocks
     for i in range(1, math.ceil(len(ciphertext)/16)):
-        prev_block = ciphertext_int[(i*16-16):i*16]
-        current_block = ciphertext_int[i*16:(i*16+16)]
+        prev_block = ciphertext[(i*16-16):i*16]
+        current_block = ciphertext[i*16:(i*16+16)]
         decrypted = int_xor(aes.decrypt(current_block),prev_block)
         decrypted_text = [chr(c) for c in decrypted]
         plaintext += "".join(decrypted_text)
