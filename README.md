@@ -47,7 +47,7 @@ và `decrypt_cbc_mode()` để giải mã
   - plaintext (String)
 
 ## 3. Cài đặt chế độ CTR
-- Cài đặt chế độ CTR tương tự với CBC
+- Cài đặt chế độ CTR tương tự với CBC với 2 hàm `encrypt_ctr_mode()` và `decrypt_cbc_mode()`
 
 ## 4. Kiểm tra cài đặt đúng so với thư viện [Cryptography](https://cryptography.io/en/latest/)
 - Hai chế độ sau khi được cài đặt sẽ được tổng hợp trong file [my_aes/__init__.py](my_aes/__init__.py) để tiện sử dụng
