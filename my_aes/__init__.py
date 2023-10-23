@@ -6,8 +6,13 @@ from my_aes.ctr_mode import encrypt_ctr_mode, decrypt_ctr_mode
 
 def encrypt(plaintext, key, iv=None, mode='CBC'):
     valid_mode = ['CBC', 'CTR']
+    valid_key_length = [128, 192, 256]
+
     if mode not in valid_mode:
-        raise ValueError('Invalid mode or output format')
+        raise ValueError('Invalid mode')
+
+    if len(key) not in valid_key_length:
+        raise ValueError('Invalid key length')
 
     if mode == 'CBC':
         iv, ciphertext = encrypt_cbc_mode(plaintext, key, iv)
@@ -19,8 +24,13 @@ def encrypt(plaintext, key, iv=None, mode='CBC'):
 
 def decrypt(ciphertext, iv, key, mode='CBC'):
     valid_mode = ['CBC', 'CTR']
+    valid_key_length = [128, 192, 256]
+
     if mode not in valid_mode:
         raise ValueError('Invalid mode')
+
+    if len(key) not in valid_key_length:
+        raise ValueError('Invalid key length')
 
     if mode == 'CBC':
         return decrypt_cbc_mode(ciphertext, iv, key)

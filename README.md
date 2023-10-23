@@ -50,6 +50,7 @@ và `decrypt_cbc_mode()` để giải mã
 - Cài đặt chế độ CTR tương tự với CBC
 
 ## 4. Kiểm tra cài đặt đúng so với thư viện [Cryptography](https://cryptography.io/en/latest/)
+- Hai chế độ sau khi được cài đặt sẽ được tổng hợp trong file [my_aes/__init__.py](my_aes/__init__.py) để tiện sử dụng
 - Mã nguồn kiểm tra kết quả mã hóa và giải mã của 2 chế độ CBC cà CTR được viết trong file [test.py](test.py) 
 - Kết quả so sánh với thư viện Cryptography trả về là trùng khớp
 
