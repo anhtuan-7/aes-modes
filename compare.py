@@ -4,7 +4,7 @@ from cryptography.hazmat.primitives import padding
 from plaintext import plaintexts
 import my_aes as aes
 
-key = os.urandom(16)
+key = os.urandom(32)
 iv = os.urandom(16)
 
 cipher_cbc = Cipher(algorithms.AES(key), modes.CBC(iv))

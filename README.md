@@ -32,7 +32,7 @@ và `decrypt_cbc_mode()` để giải mã
 ### Hàm `encrypt_cbc_mode()`
 - Tham số đầu vào: 
   - plaintext (String): thông điệp cần mã hóa
-  - key (Bytes): khóa 
+  - key (Bytes): khóa (128/192/256 bits)
   - iv (Bytes): initialization vector, có thể điền hoặc không
 - Trả về:
   - iv (Bytes)
